@@ -1,0 +1,27 @@
+{
+  "name": "ar-place",
+  "version": "1.0.0",
+  "description": "A community-driven art canvas where every user can place a pixel in a color of their choice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NUVR/AR-place.git"
+  },
+  "keywords": [
+    "augmented",
+    "reality",
+    "ar",
+    "ar.js",
+    "vr",
+    "webvr"
+  ],
+  "author": "NUVR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NUVR/AR-place/issues"
+  },
+  "homepage": "https://github.com/NUVR/AR-place#readme"
+}
