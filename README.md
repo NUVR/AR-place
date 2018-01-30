@@ -4,6 +4,13 @@ An augmented reality version of [r/place](https://www.reddit.com/r/place/)
 
 A community-driven art canvas where every user can place a pixel in a color of their choice
 
+## Build (In Progress)
+NPM build commands
+```bash
+# Development test
+npm run dev
+```
+
 ### Technologies
 - [AR.js](https://github.com/jeromeetienne/AR.js)
 - [three.js](https://threejs.org/)

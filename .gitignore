@@ -1,0 +1,5 @@
+# Project files
+.vs/
+
+# Node
+node_modules/
