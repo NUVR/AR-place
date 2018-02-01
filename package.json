@@ -1,10 +1,9 @@
 {
     "name": "ar-place",
-    "version": "1.0.0",
+    "private": true,
     "description": "A community-driven art canvas where every user can place a pixel in a color of their choice",
-    "main": "index.js",
     "scripts": {
-        "dev": "babel ./index.js --out-file public/app.js",
+        "start": "cross-env NODE_ENV=development webpack-dev-server",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -19,6 +18,13 @@
         "vr",
         "webvr"
     ],
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
     "author": "NUVR",
     "license": "MIT",
     "bugs": {
@@ -26,13 +32,25 @@
     },
     "homepage": "https://github.com/NUVR/AR-place#readme",
     "dependencies": {
-        "ar.js": "^1.4.10"
+        "jsartoolkit5": "^0.0.4",
+        "normalize.css": "latest",
+        "react": "latest",
+        "react-dom": "latest"
     },
     "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-core": "^6.26.0",
-        "babel-loader": "^7.1.2",
-        "babel-preset-env": "^1.6.1",
-        "eslint": "^4.16.0"
+        "babel-core": "latest",
+        "babel-loader": "latest",
+        "babel-preset-env": "latest",
+        "babel-preset-react": "latest",
+        "cross-env": "latest",
+        "css-loader": "latest",
+        "extract-text-webpack-plugin": "latest",
+        "html-webpack-plugin": "latest",
+        "node-sass": "latest",
+        "react-hot-loader": "^3.0.0-beta.7",
+        "sass-loader": "latest",
+        "style-loader": "latest",
+        "webpack": "latest",
+        "webpack-dev-server": "latest"
     }
 }
