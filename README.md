@@ -12,7 +12,7 @@ npm run dev
 ```
 
 ### Technologies
-- [jsartoolkit5](https://github.com/artoolkit/jsartoolkit5)
+- [jsartoolkit5](https://github.com/artoolkitx/jsartoolkit5)
 - [three.js](https://threejs.org/)
 
 ### Roadmap
