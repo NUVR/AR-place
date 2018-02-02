@@ -4,18 +4,17 @@ An augmented reality version of [r/place](https://www.reddit.com/r/place/)
 
 A community-driven art canvas where every user can place a pixel in a color of their choice
 
-## Build (In Progress)
-NPM build commands
-```bash
-# Development test
-npm run dev
-```
+## Running
+
+Run `npm start` or `yarn start` to start the webpack dev server.
+See the app running here http://localhost:8080. Hot reloading is enabled by default.
 
 ### Technologies
 - [jsartoolkit5](https://github.com/artoolkitx/jsartoolkit5)
 - [three.js](https://threejs.org/)
 
 ### Roadmap
+- [x] Set up build environment
 - [ ] Set up multi-marker tracking
 - [ ] Place canvas in augmented reality space with three.js
 - [ ] Authenticate users and allow them to add pixels to the canvas
