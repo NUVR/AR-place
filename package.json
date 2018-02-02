@@ -35,7 +35,8 @@
         "jsartoolkit5": "^0.0.4",
         "normalize.css": "latest",
         "react": "latest",
-        "react-dom": "latest"
+        "react-dom": "latest",
+        "three": "latest"
     },
     "devDependencies": {
         "babel-core": "latest",
