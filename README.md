@@ -15,10 +15,11 @@ See the app running here http://localhost:8080. Hot reloading is enabled by defa
 
 ### Roadmap
 - [x] Set up build environment
+- [ ] Set up marker tracking with jsartoolkit
 - [ ] Set up multi-marker tracking
 - [ ] Place canvas in augmented reality space with three.js
-- [ ] Authenticate users and allow them to add pixels to the canvas
 - [ ] Store canvas data in [Firebase](https://firebase.google.com/)
+- [ ] Authenticate users and allow them to add pixels to the canvas
 - [ ] Build moderation abilities
 - [ ] Deploy to the world
 
