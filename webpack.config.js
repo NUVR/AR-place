@@ -30,6 +30,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
+                        plugins: ['syntax-dynamic-import'],
                         presets: ['env', 'react']
                     }
                 }
@@ -67,6 +68,9 @@ module.exports = {
                 })
             }
         ]
+    },
+    node: {
+        fs: 'empty'
     },
     plugins: [
         new HtmlWebpackPlugin({
