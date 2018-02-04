@@ -1,14 +1,14 @@
 import React from 'react';
 
+import { setup } from '../scripts/scene.js';
+
 export default class Canvas extends React.Component {
     componentDidMount() {
-        const c = this.refs['canvas'];
-        const ctx = c.getContext('2d');
-        ctx.fillStyle = 'red';
-        ctx.fillRect(20, 20, 50, 50);
+        const [width, height] = [700, 500];
+        setup(this.refs['sceneContainer'], width, height);
     }
 
     render() {
-        return <canvas ref="canvas"></canvas>;
+        return <div ref="sceneContainer"></div>;
     }
 }
