@@ -32,26 +32,27 @@
     },
     "homepage": "https://github.com/NUVR/AR-place#readme",
     "dependencies": {
-        "jsartoolkit5": "^0.0.4",
-        "normalize.css": "latest",
-        "react": "latest",
-        "react-dom": "latest",
-        "three": "latest"
+        "jsartoolkit5": "0.0.4",
+        "normalize.css": "^7.0.0",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "three": "^0.89.0"
     },
     "devDependencies": {
-        "babel-core": "latest",
-        "babel-loader": "latest",
-        "babel-preset-env": "latest",
-        "babel-preset-react": "latest",
-        "cross-env": "latest",
-        "css-loader": "latest",
-        "extract-text-webpack-plugin": "latest",
-        "html-webpack-plugin": "latest",
-        "node-sass": "latest",
-        "react-hot-loader": "^3.0.0-beta.7",
-        "sass-loader": "latest",
-        "style-loader": "latest",
-        "webpack": "latest",
-        "webpack-dev-server": "latest"
+        "babel-core": "^6.26.0",
+        "babel-loader": "^7.1.2",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "cross-env": "^5.1.3",
+        "css-loader": "^0.28.9",
+        "extract-text-webpack-plugin": "^3.0.2",
+        "html-webpack-plugin": "^2.30.1",
+        "node-sass": "^4.7.2",
+        "react-hot-loader": "^3.1.3",
+        "sass-loader": "^6.0.6",
+        "style-loader": "^0.20.1",
+        "webpack": "^3.10.0",
+        "webpack-dev-server": "^2.11.1"
     }
 }
