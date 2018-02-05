@@ -1,0 +1,13 @@
+#video {
+    z-index: -1;
+}
+
+#sceneContainer {
+    position: relative;
+
+    video, canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
