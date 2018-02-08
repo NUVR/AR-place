@@ -1,5 +1,7 @@
 import {
-    Scene, WebGLRenderer, Camera,
+    Scene,
+    WebGLRenderer,
+    Camera,
     Color,
     AmbientLight,
 } from 'three';
@@ -21,7 +23,7 @@ async function setup(containerEl, video, width, height) {
 
     let arController = null;
     const cameraParameters = new ARCameraParam();
-    cameraParameters.onload = function() {
+    cameraParameters.onload = function () {
         arController = new ARController(video.width, video.height, cameraParameters);
         const cameraMatrix = arController.getCameraMatrix();
         camera.projectionMatrix.set(...cameraMatrix);
@@ -44,23 +46,21 @@ async function setup(containerEl, video, width, height) {
     function render() {
         requestAnimationFrame(render);
 
-        if(arController) {
+        if (arController) {
             arController.detectMarker(video);
             var markerNum = arController.getMarkerNum();
-            if(markerNum > 0) {
-                if(markerRoot.visible === false) {
+            if (markerNum > 0) {
+                if (markerRoot.visible === false) {
                     arController.getTransMatSquare(0, 1, markerRoot.markerMatrix);
-                }
-                else {
+                } else {
                     arController.getTransMatSquareCont(0, 1, markerRoot.markerMatrix, markerRoot.markerMatrix);
                 }
                 arController.transMatToGLMat(markerRoot.markerMatrix, markerRoot.matrix.elements);
             }
 
-            if(markerNum > 0) {
+            if (markerNum > 0) {
                 markerRoot.visible = true;
-            }
-            else {
+            } else {
                 markerRoot.visible = false;
             }
         }

@@ -7,7 +7,7 @@ export default class Home extends React.Component {
         return (
             <div>
                 <h1>Hello, world!</h1>
-                <Canvas />
+                <Canvas/>
             </div>
         );
     }

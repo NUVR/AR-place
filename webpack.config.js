@@ -26,10 +26,10 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
+                    loader: ['babel-loader', 'eslint-loader'],
                     options: {
                         plugins: ['syntax-dynamic-import'],
                         presets: ['env', 'react']
