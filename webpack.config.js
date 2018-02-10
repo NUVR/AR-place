@@ -26,15 +26,18 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(jsx?)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: ['babel-loader', 'eslint-loader'],
-                    options: {
-                        plugins: ['syntax-dynamic-import'],
-                        presets: ['env', 'react']
-                    }
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            plugins: ['syntax-dynamic-import'],
+                            presets: ['env', 'react']
+                        }
+                    },
+                    { loader: 'eslint-loader' }
+                ]
             },
             {
                 test: /\.css$/,
