@@ -48,7 +48,7 @@ async function setup(containerEl, video, width, height) {
 
         if (arController) {
             arController.detectMarker(video);
-            var markerNum = arController.getMarkerNum();
+            let markerNum = arController.getMarkerNum();
             if (markerNum > 0) {
                 if (markerRoot.visible === false) {
                     arController.getTransMatSquare(0, 1, markerRoot.markerMatrix);
