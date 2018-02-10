@@ -1,8 +1,8 @@
 import {
     Scene,
     WebGLRenderer,
+    Object3D,
     Camera,
-    Color,
     AmbientLight,
 } from 'three';
 
@@ -18,7 +18,7 @@ async function setup(containerEl, video, width, height) {
     renderer.setSize(width, height);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    window.camera = new Camera();
+    const camera = new Camera();
     camera.matrixAutoUpdate = false;
 
     let arController = null;
@@ -34,7 +34,7 @@ async function setup(containerEl, video, width, height) {
     const light = new AmbientLight(0x404040);
     scene.add(light);
 
-    window.markerRoot = new THREE.Object3D();
+    const markerRoot = new Object3D();
     markerRoot.markerMatrix = new Float64Array(12);
     markerRoot.matrixAutoUpdate = false;
     markerRoot.visible = false;

@@ -16,16 +16,15 @@ export default class Canvas extends React.Component {
 
     componentDidMount() {
         const { width, height } = this.state;
-        console.log(width, height);
-        setup(this.refs['sceneContainer'], this.refs['video'], width, height);
+        setup(this.sceneContainer, this.video, width, height);
     }
 
     render() {
         const { width, height } = this.state;
 
         return (
-            <div id="sceneContainer" ref="sceneContainer">
-                <video id="video" ref="video" src="static/test.mov" width={ width } height={ height } autoPlay loop controls="false" />
+            <div id="sceneContainer" ref={ (el) => this.sceneContainer = el }>
+                <video id="video" ref={ (el) => this.video = el } src="static/test.mov" width={ width } height={ height } autoPlay loop controls="false" />
             </div>
         );
     }
