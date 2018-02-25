@@ -6,7 +6,7 @@ import {
     AmbientLight,
 } from 'three';
 
-import { mesh } from './meshes';
+import mesh from './meshes';
 import { artoolkit } from './artoolkit';
 
 async function setup(containerEl, video, width, height) {
@@ -40,7 +40,6 @@ async function setup(containerEl, video, width, height) {
     markerRoot.visible = false;
     scene.add(markerRoot);
 
-    mesh.position.z = 0.5;
     markerRoot.add(mesh);
 
     function render() {
@@ -65,8 +64,6 @@ async function setup(containerEl, video, width, height) {
             }
         }
 
-        mesh.rotation.x += 0.02;
-        mesh.rotation.z += 0.02;
         renderer.render(scene, camera);
     }
 
