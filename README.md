@@ -4,13 +4,19 @@ An augmented reality version of [r/place](https://www.reddit.com/r/place/)
 
 A community-driven art canvas where every user can place a pixel in a color of their choice
 
+## Cloning
+
+HTTP: `git clone --recurse-submodules https://github.com/NUVR/AR-place.git`
+
+SSH: `git clone --recurse-submodules git@github.com:NUVR/AR-place.git`
+
 ## Running
 
 Run `npm start` or `yarn start` to start the webpack dev server.
-See the app running here http://localhost:8080. Hot reloading is enabled by default.
+See the app running here http://localhost:8080/static. Hot reloading is enabled by default.
 
 ### Technologies
-- [jsartoolkit5](https://github.com/artoolkitx/jsartoolkit5)
+- [jsartoolkit5](https://github.com/NUVR/jsartoolkit5)
 - [three.js](https://threejs.org/)
 
 ### Roadmap
