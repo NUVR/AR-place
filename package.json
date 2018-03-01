@@ -32,7 +32,7 @@
     },
     "homepage": "https://github.com/NUVR/AR-place#readme",
     "dependencies": {
-        "jsartoolkit5": "0.0.4",
+        "jsartoolkit5": "file:./lib/jsartoolkit5",
         "normalize.css": "^7.0.0",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
