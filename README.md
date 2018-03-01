@@ -6,11 +6,10 @@ A community-driven art canvas where every user can place a pixel in a color of t
 
 ## Installation
 
-First, clone this repository. Navigate into the directory installation location and run the following commands:
+First, clone this repository. Navigate into the directory installation location and run the following command(s). *Note*: if the process fails, run each command individually.
 
 ```bash
-npm install
-npm run postinstall
+npm run preinstall && npm install
 ```
 
 This will install all node dependencies and clone the required jsartoolkit5 dependency in the appropriate directory. This should take several minutes to clone so now would be the appropriate time to fill up your coffee or take the dog for a walk.
