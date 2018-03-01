@@ -7,10 +7,11 @@ import {
 } from 'three';
 
 import mesh from './meshes';
-import { artoolkit } from './artoolkit';
+import artoolkit from './artoolkit';
 
 async function setup(containerEl, video, width, height) {
-    const { ARCameraParam, ARController } = await artoolkit;
+    await artoolkit();
+    const { ARCameraParam, ARController } = window;
 
     const scene = new Scene();
     const renderer = new WebGLRenderer({ alpha: true, antialias: true });
