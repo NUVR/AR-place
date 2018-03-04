@@ -24,7 +24,7 @@ async function setup(containerEl, video, width, height) {
 
     let arController = null;
     const cameraParameters = new ARCameraParam();
-    cameraParameters.onload = function () {
+    cameraParameters.onload = function() {
         arController = new ARController(video.width, video.height, cameraParameters);
         const cameraMatrix = arController.getCameraMatrix();
         camera.projectionMatrix.set(...cameraMatrix);

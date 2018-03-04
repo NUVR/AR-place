@@ -17,7 +17,7 @@ This will install all node dependencies. This should take several minutes to clo
 ## Running
 
 Run `npm start` or `yarn start` to start the webpack dev server.
-See the app running here http://localhost:8080/static. Hot reloading is enabled by default.
+See the app running here http://localhost:8080/. Hot reloading is enabled by default.
 
 ### Technologies
 - [node](https://nodejs.org/en/)
@@ -26,7 +26,8 @@ See the app running here http://localhost:8080/static. Hot reloading is enabled 
 
 ### Roadmap
 - [x] Set up build environment
-- [ ] Set up marker tracking with jsartoolkit
+- [x] Set up marker tracking with jsartoolkit
+- [ ] Integrate ARToolkit with user camera
 - [ ] Set up multi-marker tracking
 - [ ] Place canvas in augmented reality space with three.js
 - [ ] Store canvas data in [Firebase](https://firebase.google.com/)
