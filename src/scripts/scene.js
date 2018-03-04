@@ -38,10 +38,11 @@ async function setup(containerEl, video, width, height) {
     const markerRoot = new Object3D();
     markerRoot.markerMatrix = new Float64Array(12);
     markerRoot.matrixAutoUpdate = false;
-    markerRoot.visible = false;
     scene.add(markerRoot);
 
     markerRoot.add(mesh);
+
+    let found = false;
 
     function render() {
         requestAnimationFrame(render);
@@ -50,7 +51,7 @@ async function setup(containerEl, video, width, height) {
             arController.detectMarker(video);
             let markerNum = arController.getMarkerNum();
             if (markerNum > 0) {
-                if (markerRoot.visible === false) {
+                if (!found) {
                     arController.getTransMatSquare(0, 1, markerRoot.markerMatrix);
                 } else {
                     arController.getTransMatSquareCont(0, 1, markerRoot.markerMatrix, markerRoot.markerMatrix);
@@ -58,11 +59,7 @@ async function setup(containerEl, video, width, height) {
                 arController.transMatToGLMat(markerRoot.markerMatrix, markerRoot.matrix.elements);
             }
 
-            if (markerNum > 0) {
-                markerRoot.visible = true;
-            } else {
-                markerRoot.visible = false;
-            }
+            found = markerNum > 0;
         }
 
         renderer.render(scene, camera);

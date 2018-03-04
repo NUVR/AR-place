@@ -6,13 +6,13 @@ A community-driven art canvas where every user can place a pixel in a color of t
 
 ## Installation
 
-First, clone this repository. Navigate into the directory installation location and run the following command(s). *Note*: if the process fails, run each command individually.
+First, clone this repository. Navigate into the directory installation location and run the following command.
 
 ```bash
-npm run preinstall && npm install
+npm install
 ```
 
-This will install all node dependencies and clone the required jsartoolkit5 dependency in the appropriate directory. This should take several minutes to clone so now would be the appropriate time to fill up your coffee or take the dog for a walk.
+This will install all node dependencies. This should take several minutes to clone so now would be the appropriate time to fill up your coffee or take the dog for a walk.
 
 ## Running
 
@@ -21,7 +21,7 @@ See the app running here http://localhost:8080/static. Hot reloading is enabled 
 
 ### Technologies
 - [node](https://nodejs.org/en/)
-- [jsartoolkit5](https://github.com/NUVR/jsartoolkit5)
+- [jsartoolkit5](https://github.com/artoolkit/jsartoolkit5)
 - [three.js](https://threejs.org/)
 
 ### Roadmap
@@ -38,3 +38,7 @@ See the app running here http://localhost:8080/static. Hot reloading is enabled 
 - [ ] Add metrics and analytics
 - [ ] Build view-only version for devices without a camera
 - [ ] Write native applications to increase performance
+
+## Preview
+
+![Preview](static/preview.gif)
