@@ -1,6 +1,7 @@
 import React from 'react';
 
-import Canvas from './Canvas';
+import CameraCanvas from './CameraCanvas';
+import VideoCanvas from './VideoCanvas';
 
 export default class Home extends React.Component {
 
@@ -8,7 +9,7 @@ export default class Home extends React.Component {
         super(props);
 
         this.state = {
-            showDemo: false,
+            showDemo: true,
         };
 
         this.onClick = this.onClick.bind(this);
@@ -25,7 +26,7 @@ export default class Home extends React.Component {
             <div className="container">
                 <h1>AR/Place</h1>
                 <button onClick={this.onClick}>Toggle Demo</button>
-                {this.state.showDemo ? <Canvas /> : null}
+                {this.state.showDemo ? <CameraCanvas /> : <VideoCanvas />}
             </div>
         );
     }

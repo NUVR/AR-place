@@ -4,7 +4,7 @@ import { setup } from '../scripts/scene';
 
 import '../styles/global.scss';
 
-export default class Canvas extends React.Component {
+export default class VideoCanvas extends React.Component {
     constructor(props) {
         super(props);
 

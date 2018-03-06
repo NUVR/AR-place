@@ -17,7 +17,9 @@ This will install all node dependencies. This should take several minutes to clo
 ## Running
 
 Run `npm start` or `yarn start` to start the webpack dev server.
-See the app running here http://localhost:8080/. Hot reloading is enabled by default.
+See the app running here https://localhost:8080/. Hot reloading is enabled by default. 
+
+This application requires SSL to develop since iOS 11 limits WebRTC to secured websites only. You will be presented with an "Insecure SSL..." warning which you can ignore for development purposes.
 
 ### Technologies
 - [node](https://nodejs.org/en/)
@@ -27,6 +29,7 @@ See the app running here http://localhost:8080/. Hot reloading is enabled by def
 ### Roadmap
 - [x] Set up build environment
 - [x] Set up marker tracking with jsartoolkit
+- [ ] Set up SSL certificate generation
 - [ ] Integrate ARToolkit with user camera
 - [ ] Set up multi-marker tracking
 - [ ] Place canvas in augmented reality space with three.js

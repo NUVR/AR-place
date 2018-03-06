@@ -11,7 +11,34 @@ import artoolkit from './artoolkit';
 
 async function setup(containerEl, video, width, height) {
     await artoolkit();
-    const { ARCameraParam, ARController } = window;
+    //const { ARCameraParam, ARController } = window;
+
+    let constraints = {
+        audio: false,
+        video: {
+            facingMode: 'user'
+        }
+    }
+
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function success(stream) {
+        video.srcObject = stream
+    })
+    .catch(function(error) {
+        alert(error)
+    })
+
+    /*if (video === null) {
+        video = ARController.getUserMediaThreeScene({
+            maxARVideoSize: 320, // do AR processing on scaled down video of this size
+            facing: "environment",
+            cameraParam: 'static/camera_para.dat',
+            onSuccess: function() {
+                alert("FUCK")
+                // Do nothing
+            }
+        });
+    }
 
     const scene = new Scene();
     const renderer = new WebGLRenderer({ alpha: true, antialias: true });
@@ -25,7 +52,7 @@ async function setup(containerEl, video, width, height) {
     let arController = null;
     const cameraParameters = new ARCameraParam();
     cameraParameters.onload = function() {
-        arController = new ARController(video.width, video.height, cameraParameters);
+        arController = new ARController(width, height, cameraParameters);
         const cameraMatrix = arController.getCameraMatrix();
         camera.projectionMatrix.set(...cameraMatrix);
         camera.projectionMatrix = camera.projectionMatrix.transpose();
@@ -65,7 +92,7 @@ async function setup(containerEl, video, width, height) {
         renderer.render(scene, camera);
     }
 
-    render();
+    render();*/
 }
 
 export { setup };
