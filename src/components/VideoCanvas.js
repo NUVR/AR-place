@@ -16,7 +16,7 @@ export default class VideoCanvas extends React.Component {
 
     componentDidMount() {
         const { width, height } = this.state;
-        setup(this.sceneContainer, this.video, width, height);
+        setup(this.sceneContainer, this.video, width, height, false);
     }
 
     render() {

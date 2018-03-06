@@ -17,20 +17,7 @@ export default class CameraCanvas extends React.Component {
 
     componentDidMount() {
         const { width, height } = this.state;
-        // setup(this.sceneContainer, this.video, width, height);
-
-        var video = document.querySelector('video')
-
-        var constraints = {
-            audio: false,
-            video: {
-                facingMode: 'user'
-            }
-        }
-
-        navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
-            video.srcObject = stream
-        })
+        setup(this.sceneContainer, this.video, width, height, true);
     }
     
     render() {
@@ -38,7 +25,7 @@ export default class CameraCanvas extends React.Component {
 
         return (
             <div id="sceneContainer" ref={ (el) => this.sceneContainer = el }>
-                <video autoPlay playsInline />
+                <video autoPlay playsInline width={ width } height={ height } loop />
             </div>
         );
     }

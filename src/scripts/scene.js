@@ -9,9 +9,9 @@ import {
 import mesh from './meshes';
 import artoolkit from './artoolkit';
 
-async function setup(containerEl, video, width, height) {
+async function setup(containerEl, video, width, height, useCamera) {
     await artoolkit();
-    //const { ARCameraParam, ARController } = window;
+    const { ARCameraParam, ARController } = window;
 
     let constraints = {
         audio: false,
@@ -28,9 +28,8 @@ async function setup(containerEl, video, width, height) {
         alert(error)
     })
 
-    /*if (video === null) {
+    if (useCamera) {
         video = ARController.getUserMediaThreeScene({
-            maxARVideoSize: 320, // do AR processing on scaled down video of this size
             facing: "environment",
             cameraParam: 'static/camera_para.dat',
             onSuccess: function() {
@@ -92,7 +91,7 @@ async function setup(containerEl, video, width, height) {
         renderer.render(scene, camera);
     }
 
-    render();*/
+    render();
 }
 
 export { setup };
