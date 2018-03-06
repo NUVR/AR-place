@@ -5,22 +5,5 @@
     </head>
     <body>
         <div id="root"></div>
-        <video autoplay playsinline></video>
-    <script>
-        var video = document.querySelector('video')
-        var constraints = {
-            audio: false,
-            video: {
-                facingMode: 'user'
-            }
-        }
-        navigator.mediaDevices.getUserMedia(constraints)
-        .then(function success(stream) {
-            video.srcObject = stream
-        })
-        .catch(function(error) {
-            alert(error)
-        });
-    </script>
     </body>
 </html>

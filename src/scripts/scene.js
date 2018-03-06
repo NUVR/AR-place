@@ -13,28 +13,16 @@ async function setup(containerEl, video, width, height, useCamera) {
     await artoolkit();
     const { ARCameraParam, ARController } = window;
 
-    let constraints = {
-        audio: false,
-        video: {
-            facingMode: 'user'
-        }
-    }
-
-    navigator.mediaDevices.getUserMedia(constraints)
-    .then(function success(stream) {
-        video.srcObject = stream
-    })
-    .catch(function(error) {
-        alert(error)
-    })
-
     if (useCamera) {
-        video = ARController.getUserMediaThreeScene({
+        video = ARController.getUserMedia({
+            maxARVideoSize: 320, // do AR processing on scaled down video of this size
             facing: "environment",
-            cameraParam: 'static/camera_para.dat',
-            onSuccess: function() {
-                alert("FUCK")
-                // Do nothing
+            onSuccess: function (stream) {
+                alert('SUCCESS')
+                video.srcObject = stream
+            },
+            onError: function (error) {
+                alert(error)
             }
         });
     }
@@ -50,7 +38,7 @@ async function setup(containerEl, video, width, height, useCamera) {
 
     let arController = null;
     const cameraParameters = new ARCameraParam();
-    cameraParameters.onload = function() {
+    cameraParameters.onload = function () {
         arController = new ARController(width, height, cameraParameters);
         const cameraMatrix = arController.getCameraMatrix();
         camera.projectionMatrix.set(...cameraMatrix);
