@@ -1,85 +1,101 @@
-import {
-    Scene,
-    WebGLRenderer,
-    Object3D,
-    Camera,
-    AmbientLight,
-} from 'three';
+import init from './playcanvas';
 
-import mesh from './meshes';
-import artoolkit from './artoolkit';
+async function setup(canvas, width, height) {
 
-async function setup(containerEl, video, width, height, useCamera) {
-    await artoolkit();
-    const { ARCameraParam, ARController } = window;
-
-    if (useCamera) {
-        video = ARController.getUserMedia({
-            maxARVideoSize: 320, // do AR processing on scaled down video of this size
-            facing: "environment",
-            onSuccess: function (stream) {
-                alert('SUCCESS')
-                video.srcObject = stream
-            },
-            onError: function (error) {
-                alert(error)
-            }
-        });
+    const pc = window.pc;
+    if (height) {
+        height = 'auto'
     }
 
-    const scene = new Scene();
-    const renderer = new WebGLRenderer({ alpha: true, antialias: true });
-    containerEl.appendChild(renderer.domElement);
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    // Create the canvas for our application
+    canvas.style.position = "absolute";
+    canvas.style.top = "0px";
+    canvas.style.left = "0px";
+    document.body.appendChild(canvas);
 
-    const camera = new Camera();
-    camera.matrixAutoUpdate = false;
+    // Create the application and start the update loop
+    let app = new pc.Application(canvas);
+    app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
+    app.setCanvasResolution(pc.RESOLUTION_AUTO);
+    app.start();
 
-    let arController = null;
-    const cameraParameters = new ARCameraParam();
-    cameraParameters.onload = function () {
-        arController = new ARController(width, height, cameraParameters);
-        const cameraMatrix = arController.getCameraMatrix();
-        camera.projectionMatrix.set(...cameraMatrix);
-        camera.projectionMatrix = camera.projectionMatrix.transpose();
-    };
-    cameraParameters.load('static/camera_para.dat');
+    // Lift scene ambient lighting up from black
+    app.scene.ambientLight = new pc.Color(0.2, 0.2, 0.2);
 
-    const light = new AmbientLight(0x404040);
-    scene.add(light);
+    // Load PlayCanvas-AR
+    await init();
 
-    const markerRoot = new Object3D();
-    markerRoot.markerMatrix = new Float64Array(12);
-    markerRoot.matrixAutoUpdate = false;
-    scene.add(markerRoot);
+    // Create the AR-enabled camera using generic camera calibration settings
+    app.assets.loadFromUrl("../static/camera_para.dat", "binary", function (err, asset) {
 
-    markerRoot.add(mesh);
-
-    let found = false;
-
-    function render() {
-        requestAnimationFrame(render);
-
-        if (arController) {
-            arController.detectMarker(video);
-            let markerNum = arController.getMarkerNum();
-            if (markerNum > 0) {
-                if (!found) {
-                    arController.getTransMatSquare(0, 1, markerRoot.markerMatrix);
-                } else {
-                    arController.getTransMatSquareCont(0, 1, markerRoot.markerMatrix, markerRoot.markerMatrix);
-                }
-                arController.transMatToGLMat(markerRoot.markerMatrix, markerRoot.matrix.elements);
-            }
-
-            found = markerNum > 0;
+        if (err) {
+            alert(err)
         }
 
-        renderer.render(scene, camera);
-    }
+        var camera = new pc.Entity("AR Camera");
+        camera.addComponent("camera", {
+            clearColor: new pc.Color(0, 0, 0, 0)
+        });
+        camera.addComponent("script");
+        camera.script.create("arCamera", {
+            attributes: {
+                cameraCalibration: asset,
+                detectionMode: 1,     // Mono template
+                labelingMode: 1,      // Black Region
+                processingMode: 0,    // Frame
+                thresholdMode: 0,     // Manual
+                threshold: 100,
+                trackerResolution: 0, // Full
+                trackAlternateFrames: false,
+                debugOverlay: false,
+                videoTexture: false
+            }
+        });
+        app.root.addChild(camera);
+    });
 
-    render();
+    // Load the Hiro marker pattern and create a marker entity with it
+    app.assets.loadFromUrl("../static/markers/hiro.patt", "binary", function (err, asset) {
+
+        if (err) {
+            alert(err)
+        }
+
+        var hiro = new pc.Entity("Hiro Marker");
+        hiro.addComponent("script");
+        hiro.script.create("arMarker", {
+            attributes: {
+                pattern: asset,
+                width: 1,
+                deactivationTime: 0.25,
+                shadow: true,
+                shadowStrength: 0.5
+            }
+        });
+        app.root.addChild(hiro);
+
+        // Create a box as a child of the Hiro marker
+        var box = new pc.Entity("Box");
+        box.addComponent("model", {
+            type: "box"
+        });
+        box.setLocalPosition(0, 0.5, 0);
+        hiro.addChild(box);
+
+        // Create a directional light
+        var light = new pc.Entity();
+        light.addComponent("light", {
+            type: "directional",
+            color: new pc.Color(1, 1, 1),
+            castShadows: true,
+            shadowBias: 0.2,
+            normalOffsetBias: 0.1,
+            shadowDistance: 10,
+            shadowType: pc.SHADOW_PCF5
+        });
+        light.setLocalEulerAngles(22, 0, -16);
+        hiro.addChild(light);
+    });
 }
 
 export { setup };

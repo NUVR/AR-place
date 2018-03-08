@@ -1,0 +1,3 @@
+[submodule "lib/playcanvas"]
+	path = lib/playcanvas
+	url = https://github.com/NUVR/playcanvas-ar

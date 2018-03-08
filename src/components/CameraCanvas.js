@@ -17,7 +17,7 @@ export default class CameraCanvas extends React.Component {
 
     componentDidMount() {
         const { width, height } = this.state;
-        setup(this.sceneContainer, this.video, width, height, true);
+        setup(this.canvas, width, height);
     }
     
     render() {
@@ -25,7 +25,7 @@ export default class CameraCanvas extends React.Component {
 
         return (
             <div id="sceneContainer" ref={ (el) => this.sceneContainer = el }>
-                <video autoPlay playsInline width={ width } height={ height } loop />
+                <canvas ref={ (el) => this.canvas = el } width={ width } height={ height } loop />
             </div>
         );
     }
