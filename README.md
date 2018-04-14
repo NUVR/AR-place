@@ -6,7 +6,9 @@ A community-driven art canvas where every user can place a pixel in a color of t
 
 ## Installation
 
-First, clone this repository. Navigate into the directory installation location and run the following command.
+### Step 1. Install Node Modules
+
+First, clone this repository. Navigate into the directory installation location and run the following command:
 
 ```bash
 npm install
@@ -14,12 +16,26 @@ npm install
 
 This will install all node dependencies. This should take several minutes to clone so now would be the appropriate time to fill up your coffee or take the dog for a walk.
 
+### Step 2. Install Ngrok
+
+Ngrok is used to create a secure tunnel for your local web service. This is mainly used by Viro. First, check if you have Ngrok installed by running the command `ngrok`. If you do not have it installed, run the following command:
+
+```bash
+npm install -g ngrok
+```
+
+If global package installs require super and since ngrok needs to download some additional binaries, you _might_ need to run the following:
+
+```bash
+sudo npm i -g ngrok --unsafe-perm=true --allow-root
+```
+
 ## Running
 
-Run `npm start` or `yarn start` to start the webpack dev server.
-See the app running here https://localhost:8080/. Hot reloading is enabled by default.
+Run `npm start` or `yarn start` to start the Ngrok package server.
+See the app by visting the (https://xxxxxx.ngrok.io) url, which is printed at the top of the terminal window where you ran `npm start`.
 
-This application requires SSL to develop since iOS 11 limits WebRTC to secured websites only. You will be presented with an "Insecure SSL..." warning which you can ignore for development purposes.
+You can also navigate to http://localhost:4040/status to find the status of your Ngrok package server.
 
 ### Technologies
 
