@@ -44,6 +44,7 @@
   },
   "homepage": "https://github.com/NUVR/AR-place#readme",
   "dependencies": {
+    "core-js": "^3.6.4",
     "jsartoolkit": "artoolkitx/jsartoolkit5"
   },
   "devDependencies": {
