@@ -1,1 +1,3 @@
-console.log('test');
+import { artoolkit } from './artoolkit-shim';
+
+console.log(artoolkit);
