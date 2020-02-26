@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -15,8 +17,7 @@ module.exports = {
     publicPath: '/',
     host: '0.0.0.0',
     port: 8000,
-    contentBase: path.join(__dirname, 'dist'),
-    watchContentBase: true,
+    contentBase: path.join(__dirname, 'assets'),
     stats: {
       assetsSort: 'chunks',
       excludeAssets: /(^lib\/|.map$)/,
@@ -33,6 +34,10 @@ module.exports = {
     },
   },
 
+  node: {
+    fs: 'empty',
+  },
+
   entry: './src/index.js',
 
   optimization: {
@@ -40,16 +45,23 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       cacheGroups: {
-        three: { name: 'vendor~three', test: /[\\/]node_modules[\\/]three/, priority: 10 },
-        shared: { name: 'vendors~shared', test: /[\\/]node_modules/, minChunks: 6 },
+        arjs: { name: 'vendor~arjs', test: /[\\/]node_modules[\\/]ar\.js/, priority: 10 },
+        shared: { name: 'vendors~shared', test: /[\\/]node_modules/ },
       },
     },
   },
 
   module: {
     strictExportPresence: true,
-    rules: [{ test: /\.js$/, exclude: /node_modules/, use: ['babel-loader', 'eslint-loader'] }],
+    rules: [
+      { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader', 'eslint-loader'] },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+    ],
   },
 
-  plugins: [new HtmlWebpackPlugin({ inject: 'head' })],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({ THREE: 'three' }),
+    new HtmlWebpackPlugin({ inject: 'head', template: './src/index.html' }),
+  ],
 };
