@@ -7,3 +7,16 @@ body {
   margin: 0;
   overflow: hidden;
 }
+
+.hidden {
+  display: none;
+}
+
+#overlay {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
