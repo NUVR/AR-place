@@ -12,6 +12,12 @@ import { ArMarkerControls, ArToolkitContext, ArToolkitSource } from './arjs-shim
 
 const ARManager = {
   init() {
+    if (this._initialized) {
+      throw new Error('Manager is already initialized');
+    }
+
+    this._initialized = true;
+    this.ready = false;
     this.render = this.render.bind(this);
     this.resizeHandler = this.resizeHandler.bind(this);
 
@@ -37,7 +43,12 @@ const ARManager = {
     });
 
     arToolkitSource.init(() => {
-      setTimeout(this.resizeHandler, 1000);
+      const sourceElement = arToolkitSource.domElement;
+      sourceElement.classList.add('hidden');
+      setTimeout(() => {
+        this.resizeHandler();
+        sourceElement.classList.remove('hidden');
+      }, 1000);
     });
     arToolkitContext.init(() => {
       this.camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
@@ -56,13 +67,26 @@ const ARManager = {
     this._markerControls = markerControls;
   },
 
+  runWhenReady(fn) {
+    if (this.ready) {
+      fn();
+      return;
+    }
+
+    const readyPollId = setInterval(() => {
+      if (this._arToolkitSource.ready) {
+        clearInterval(readyPollId);
+        this.ready = true;
+        fn();
+      }
+    }, 100);
+  },
+
   render() {
     this.renderer.render(this.scene, this.camera);
 
-    if (this._arToolkitSource.ready) {
-      this._arToolkitContext.update(this._arToolkitSource.domElement);
-      this.scene.visible = this.camera.visible;
-    }
+    this._arToolkitContext.update(this._arToolkitSource.domElement);
+    this.scene.visible = this.camera.visible;
 
     if (this.shouldRender) {
       requestAnimationFrame(this.render);
@@ -78,8 +102,14 @@ const ARManager = {
   },
 
   startRendering() {
+    if (this.shouldRender) {
+      return;
+    }
+
     this.shouldRender = true;
-    requestAnimationFrame(this.render);
+    this.runWhenReady(() => {
+      requestAnimationFrame(this.render);
+    });
   },
   stopRendering() {
     this.shouldRender = false;
