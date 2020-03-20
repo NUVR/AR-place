@@ -1,10 +1,11 @@
 import {
   Camera,
-  CubeGeometry,
   DoubleSide,
   Mesh,
-  MeshNormalMaterial,
+  MeshBasicMaterial,
+  PlaneGeometry,
   Scene,
+  TextureLoader,
   WebGLRenderer,
 } from 'three';
 
@@ -56,10 +57,18 @@ const ARManager = {
 
     window.addEventListener('resize', this.resizeHandler);
 
-    const geometry = new CubeGeometry(1, 1, 1);
-    const material = new MeshNormalMaterial({ transparent: true, opacity: 0.5, side: DoubleSide });
+    const frogTexture = new TextureLoader().load('frog.png');
+    const geometry = new PlaneGeometry(1, 1);
+    const material = new MeshBasicMaterial({
+      map: frogTexture,
+      side: DoubleSide,
+      // color: 0xff0000,
+      // transparent: true,
+      // opacity: 0.5,
+    });
     const mesh = new Mesh(geometry, material);
-    mesh.position.y = geometry.parameters.height / 2;
+    mesh.rotation.x = Math.PI / 2;
+    mesh.rotation.z = Math.PI;
     this.scene.add(mesh);
 
     this._arToolkitSource = arToolkitSource;
